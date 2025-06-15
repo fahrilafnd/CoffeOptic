@@ -45,29 +45,34 @@ class MqttService
                 return;
             }
 
-            $jumlah = (int) $data['jumlah'];
-            $berat = (float) $data['berat'];
+            $jumlah = (int) $data['jumlah']; // Dianggap sebagai jumlah biji buruk
+            $berat = (int) $data['berat'];   // Berat total (dalam gram)
 
-            // Ambil data terakhir dari tabel
-            $last = DB::table('hasil_sortir')->orderByDesc('id')->first();
+            // Cek apakah data hari ini sudah pernah masuk
+            $today = now()->format('Y-m-d');
 
-            if ($last && $last->jumlah == $jumlah && $last->berat == $berat) {
+            $last = DB::table('hasil_laporans')
+                ->whereDate('tanggal', $today)
+                ->orderByDesc('id')
+                ->first();
+
+            if ($last && $last->jumlah_biji_buruk == $jumlah && $last->total_berat == $berat) {
                 echo "Data sama dengan sebelumnya, tidak disimpan ulang.\n";
                 return;
             }
 
-            // Simpan jika berbeda
-            DB::table('hasil_sortir')->insert([
-                'jumlah' => $jumlah,
-                'berat' => $berat,
-                'tanggal' => now(),
+            DB::table('hasil_laporans')->insert([
+                'tanggal' => $today,
+                'jumlah_biji_buruk' => $jumlah,
+                'total_berat' => $berat,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
 
-            echo "Data berhasil disimpan ke database.\n";
+            echo "Data berhasil disimpan ke tabel hasil_laporans.\n";
         }, 0);
 
         $this->mqtt->loop(true);
     }
+
 }

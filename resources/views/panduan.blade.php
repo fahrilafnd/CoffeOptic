@@ -18,14 +18,14 @@
             <br><br>
             1. Masuk ke akunmu terlebih dahulu. <br>
             2. Buka tab <strong>Beranda</strong> di menu utama. <br>
-            3. Klik tombol <strong>"ON/OFF"</strong> untuk mengaktifkan sistem penyortiran. <br>
+            3. Klik tombol <strong>"NYALAKAN/MATIKAN"</strong> untuk mengaktifkan sistem penyortiran. <br>
             4. Tunggu beberapa saat hingga muncul pop-up bahwa alat berhasil dinyalakan. <br>
             5. Untuk melihat hasil penyortiran, buka tab <strong>Hasil Laporan</strong>.  
             <br><br>
             Jika butuh bantuan lebih lanjut, silakan hubungi admin.
         </p>
     </div>
-    >
+
     </div>
     
     

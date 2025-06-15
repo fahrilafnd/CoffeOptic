@@ -17,7 +17,7 @@ class KontrolController extends Controller
 
    public function kontrolAlat(Request $request)
     {
-        dd($request);
+        // dd($request);
         $request->validate([
             'command' => 'required|in:ON,OFF'
         ]);

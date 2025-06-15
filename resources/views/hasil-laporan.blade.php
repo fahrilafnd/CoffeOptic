@@ -18,9 +18,8 @@
             <thead class="bg-[#3e2f2f] text-white">
                 <tr>
                     <th class="px-4 py-2 text-left">ID</th>
-                    <th class="px-4 py-2 text-left">Nama</th>
                     <th class="px-4 py-2 text-left">Tanggal</th>
-                    <th class="px-4 py-2 text-left">Jumlah tersortir</th>
+                    <th class="px-4 py-2 text-left">Jumlah tersortir(Biji Buruk)</th>
                     <th class="px-4 py-2 text-left">Berat total</th>
                 </tr>
             </thead>

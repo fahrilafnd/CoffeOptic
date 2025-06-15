@@ -30,19 +30,17 @@
                 </a>
             
                 <a href="{{ url('/hasil-laporan') }}"
-                   class="{{ request()->is('hasillaporan') ? 'text-[#a77b4c] font-semibold' : 'hover:text-[#a77b4c]' }} transition">
+                    class="{{ request()->is('hasil-laporan') ? 'text-[#a77b4c] font-semibold' : 'hover:text-[#a77b4c]' }} transition">
                     Hasil Laporan
                 </a>
+
             
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit"
-                            class="bg-[#a77b4c] hover:bg-[#8c6540] text-white font-medium px-4 py-2 rounded transition">
-                        Logout
-                    </button>
-                </form>
+                <button type="button"
+                        onclick="confirmLogout()"
+                        class="bg-[#a77b4c] hover:bg-[#8c6540] text-white font-medium px-4 py-2 rounded transition">
+                    Logout
+                </button>
             </div>
-            
         </div>
     </div>
 
@@ -63,22 +61,44 @@
             Hasil Penyortiran
         </a>
     
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit"
-                    class="w-full text-left bg-[#a77b4c] hover:bg-[#8c6540] text-white font-medium px-4 py-2 rounded transition">
-                Logout
-            </button>
-        </form>
+        <button type="button"
+                onclick="confirmLogout()"
+                class="w-full text-left bg-[#a77b4c] hover:bg-[#8c6540] text-white font-medium px-4 py-2 rounded transition">
+            Logout
+        </button>
     </div>
-    
 </nav>
+
+<!-- Hidden logout form -->
+<form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+    @csrf
+</form>
+
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    menuBtn.addEventListener('click', () => {
+    menuBtn?.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
     });
+
+    function confirmLogout() {
+        Swal.fire({
+            title: 'Yakin ingin logout?',
+            text: "Sesi Anda akan berakhir.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#a77b4c',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, logout!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('logout-form').submit();
+            }
+        });
+    }
 </script>
